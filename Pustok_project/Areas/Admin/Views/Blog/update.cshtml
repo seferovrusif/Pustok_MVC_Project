@@ -1,0 +1,61 @@
+﻿
+@model UpdateBlogVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Update </h6>
+    </div>
+    <div class="card-body">
+        <form asp-action="Update" method="post">
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description">Description</label>
+                <input asp-for="Description" class="form-control">
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+           @*  <div class="form-group">
+                <label asp-for="CreatedAt">CreatedAt</label>
+                <input asp-for="CreatedAt" class="form-control">
+                <span asp-validation-for="CreatedAt" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="UpdatedAt">UpdatedAT</label>
+                <input asp-for="UpdatedAt" class="form-control">
+                <span asp-validation-for="UpdatedAt" class="text-danger"></span>
+            </div> *@
+            <div class="form-group">
+                <label asp-for="AuthorId">AuthorId</label>
+                <select class="form-control" asp-for="AuthorId" asp-items='@new  SelectList(ViewBag.Author,"Id","Name")'>
+                    <option disabled selected>Select Author</option>
+                </select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>    
+            <div class="form-group">
+                <label asp-for="TagId">Tag</label>
+                <select class="form-control" asp-for="TagId" asp-items='@new  SelectList(ViewBag.Tag,"Id","Title")'>
+                    <option disabled selected>Select Tag</option>
+                </select>
+                <span asp-validation-for="TagId" class="text-danger"></span>
+            </div>
+            @*      <div class="form-group">
+                <label for="left">Left</label>
+                <input asp-for="Isleft" value="-1" type="radio" id="left">
+                <label for="middle">Middle</label>
+                <input asp-for="Isleft" value="0" type="radio" id="middle">
+                <label for="right">Right</label>
+                <input asp-for="Isleft" value="1" type="radio" id="right">
+                <br />
+                <span asp-validation-for="Isleft" class="text-danger"></span>
+            </div> *@
+            <button class="btn btn-success">Submit!</button>
+        </form>
+    </div>
+</div>
+

@@ -1,0 +1,43 @@
+﻿@model List<AuthorListItemVM>
+
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Author";
+}
+@section styles{
+    <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
+}
+@section scripts{
+    <script src="~/admin/js/demo/datatables-demo.js"></script>
+}
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Authors</h6>
+        <a href="/Admin/Author/Create" class="btn btn-outline-success">Create</a>
+    </div>
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                <thead>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Surname</th>
+                <th colspan="2">Action</th>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@item.Id</td>
+                            <td>@item.Name</td>
+                            <td>@item.Surname</td>
+                            <td class="text-center"><a class="btn btn-outline-info" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
+                            <td class="text-center"><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+}
+@model CreateSliderVM
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Create Slider</h6>
+    </div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Title">Title</label>
+                <input id="Title" type="text" class="form-control" name="Title">
+            </div>
+            <div class="form-group">
+                <label for="Text">Text</label>
+                <input type="text" id="Text" name="Text" class="form-control">
+            </div>
+             <div class="form-group">
+                <label for="Price">Price</label>
+                <input type="text" id="Price" name="Price" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl">ImageFile</label>
+                <input asp-for="ImageUrl" accept="image/*" class="form-control">
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <button class="btn btn-success">Submit!</button>
+     </form>
+</div>
+</div>

@@ -1,0 +1,49 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model UpdateSliderVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Update Slider</h6>
+    </div>
+    <div class="card-body">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="Title">Title</label>
+                <input asp-for="Title" class="form-control">
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Text">Text</label>
+                <input asp-for="Text" class="form-control">
+                <span asp-validation-for="Text" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ImageUrl">ImageUrl</label>
+                <label asp-for="ImageUrlstr">ImageUrlstr</label>
+                <input asp-for="ImageUrl" class="form-control">
+                <span asp-validation-for="ImageUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price">Price</label>
+                <input asp-for="Price" class="form-control">
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+       @*      <div class="form-group">
+                <label for="left">Left</label>
+                <input asp-for="Isleft" value="-1" type="radio" id="left">
+                <label for="middle">Middle</label>
+                <input asp-for="Isleft" value="0" type="radio" id="middle">
+                <label for="right">Right</label>
+                <input asp-for="Isleft" value="1" type="radio" id="right">
+                <br />
+                <span asp-validation-for="Isleft" class="text-danger"></span>
+            </div> *@
+            <button class="btn btn-success">Submit!</button>
+        </form>
+    </div>
+</div>
+
