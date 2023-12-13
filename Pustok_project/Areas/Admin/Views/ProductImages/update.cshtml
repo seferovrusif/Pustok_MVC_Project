@@ -1,0 +1,47 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@model UpdateProductImageVM
+@{
+    ViewData["Title"] = "Update";
+}
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Update ProductImages</h6>
+    </div>
+    <div class="card-body">
+        <form asp-action="Update" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="ImagePath">ImagePath</label>
+                <img width="200" src="~/@Model.ImagePathStr" />
+                @* <img width="80" src="~/@item.ImageUrl" /> *@
+                @* <input asp-for="ImagePath" class="form-control"> *@
+                <input asp-for="ImagePath" accept="image/*" class="form-control">
+
+                <span asp-validation-for="ImagePath" class="text-danger"></span>
+
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ProductId">ProductId</label>
+                <select class="form-control" asp-for="ProductId" asp-items='@new  SelectList(ViewBag.Product,"Id","Name")'>
+                    <option disabled selected>Select ProductId</option>
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+           
+       @*      <div class="form-group">
+                <label for="left">Left</label>
+                <input asp-for="Isleft" value="-1" type="radio" id="left">
+                <label for="middle">Middle</label>
+                <input asp-for="Isleft" value="0" type="radio" id="middle">
+                <label for="right">Right</label>
+                <input asp-for="Isleft" value="1" type="radio" id="right">
+                <br />
+                <span asp-validation-for="Isleft" class="text-danger"></span>
+            </div> *@
+            <button class="btn btn-success">Submit!</button>
+        </form>
+    </div>
+</div>
+

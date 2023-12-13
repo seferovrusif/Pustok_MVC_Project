@@ -1,0 +1,38 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+}
+@model CreateProductImageVM
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Create ProductImages</h6>
+    </div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label asp-for="ImageFile">ImageFile</label>
+                <input asp-for="ImageFile" accept="image/*" class="form-control">
+                <span asp-validation-for="ImageFile" class="text-danger"></span>
+            </div>
+
+
+            @*   <div class="form-group">
+                <label for="IsActive">IsActive</label>
+                <input type="text" id="IsActive" name="IsActive" class="form-control">
+            </div> *@
+       
+            <div class="form-group">
+                <label asp-for="ProductId">ProductId</label>
+                <select class="form-control" asp-for="ProductId" asp-items='@new  SelectList(ViewBag.Product,"Id","Name")'>
+                    <option disabled selected>Select ProductId</option>
+                </select>
+                <span asp-validation-for="ProductId" class="text-danger"></span>
+            </div>
+
+
+            <button class="btn btn-success">Submit!</button>
+     </form>
+</div>
+</div>

@@ -1,0 +1,15 @@
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Pustok_project.ViewModels.AuthorVM
+{
+    public class AuthorListItemVM
+    {
+        public int Id { get; set; }
+        [MaxLength(32)]
+        public string Name { get; set; }
+        [MaxLength(32)]
+        public string Surname { get; set; }
+        public bool IsDeleted { get; set; } = false;
+
+    }
+}

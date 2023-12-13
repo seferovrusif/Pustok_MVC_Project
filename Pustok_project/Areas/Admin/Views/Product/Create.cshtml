@@ -1,0 +1,76 @@
+﻿@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+
+@{
+    ViewData["Title"] = "Create";
+}
+@model CreateProductVM
+
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Create Product</h6>
+    </div>
+    <div class="card-body">
+        <form action="" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="Name">Name</label>
+                <input id="Name" type="text" class="form-control" name="Name">
+            </div>
+
+            <div class="form-group">
+                <label for="ProductCode">ProductCode</label>
+                <input type="text" id="ProductCode" name="ProductCode" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Description">Description</label>
+                <input type="text" id="Description" name="Description" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="About">About</label>
+                <input type="text" id="About" name="About" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="SellPrice">SellPrice</label>
+                <input type="text" id="SellPrice" name="SellPrice" class="form-control">
+            </div><div class="form-group">
+                <label for="CostPrice">CostPrice</label>
+                <input type="text" id="CostPrice" name="CostPrice" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="Discount">Discount</label>
+                <input type="text" id="Discount" name="Discount" class="form-control">
+            </div>
+
+            <div class="form-group">
+                <label for="Quantity">Quantity</label>
+                <input type="text" id="Quantity" name="Quantity" class="form-control">
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductMainImg">ProductMainImg</label>
+                <input asp-for="ProductMainImg" accept="image/*" class="form-control">
+                <span asp-validation-for="ProductMainImg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductImages">ProductImages</label>
+                <input asp-for="ProductImages" accept="image/*" class="form-control">
+                <div class="text-danger " asp-validation-summary=ModelOnly></div>
+                @* <span asp-validation-for="Images" class="text-danger"></span> *@
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId">CategoryId</label>
+                <select class="form-control" asp-for="CategoryId" asp-items='@new  SelectList(ViewBag.Category,"Id","Name")'>
+                    <option disabled selected>Select CategoryId</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TagId">Tag</label>
+                <select class="form-control" asp-for="TagId" asp-items='@new  SelectList(ViewBag.Tag,"Id","Title")'>
+                    <option disabled selected>Select Tag</option>
+                </select>
+                <span asp-validation-for="TagId" class="text-danger"></span>
+            </div> 
+ 
+            <button class="btn btn-success">Submit!</button>
+        </form>
+    </div>
+</div>
