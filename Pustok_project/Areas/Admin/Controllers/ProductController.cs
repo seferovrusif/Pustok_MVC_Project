@@ -40,7 +40,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 IsDeleted = s.IsDeleted,
                 TagId = s.TagProducts.Select(a => a.TagId).ToList(),
 
-            }).ToListAsync();
+            }).Take(1).ToListAsync();
             return View(ms);
 
         }
@@ -232,6 +232,41 @@ namespace Pustok_project.Areas.Admin.Controllers
             await _db.SaveChangesAsync();
             //TempData["Response"] = true;
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult ShowMoreButton(int page = 1, int pageSize = 5)
+        {
+            var records = _db.Product.ToList()
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return View(records);
+        }
+        public IActionResult GetMoreRecords(int page = 1, int pageSize = 5)
+        {
+            var records = _db.Product.Select(s => new ProductListItemVM
+            {
+
+                Id = s.Id,
+                Name = s.Name,
+                ProductCode = s.ProductCode,
+                About = s.About,
+                Description = s.Description,
+                SellPrice = s.SellPrice,
+                CostPrice = s.CostPrice,
+                Discount = s.Discount,
+                Quantity = s.Quantity,
+                CategoryId = s.CategoryId,
+                ProductMainImg = s.ProductMainImg,
+                IsDeleted = s.IsDeleted,
+                TagId = s.TagProducts.Select(a => a.TagId).ToList(),
+
+            })
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return PartialView("_ProductLoadMorePartial", records);
         }
     }
     }

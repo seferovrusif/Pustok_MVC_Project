@@ -11,11 +11,11 @@
 @section scripts{
     <script>
 
-        $("#dataTable").on("click", "#prod-pag a", function (ev) {
+        $("#salam").on("click", "#prod-pag a", function (ev) {
             ev.preventDefault();
             fetch($(this).attr("href"))
                 .then(res => res.text())
-                .then(data => $("#dataTable").html(data))
+                .then(data => $("#salam").html(data))
         })
 
                 
@@ -28,9 +28,9 @@
         <a href="/Admin/Tag/Create" class="btn btn-outline-success">Create</a>
     </div>
     <div class="card-body">
-        <div class="table-responsive">
+        <div class="table-responsive" >
             <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead>
+                <thead id="salam">
                 <th>Id</th>
                 <th>Title</th>
                 <th colspan="2">Action</th>
@@ -38,17 +38,9 @@
                 <tbody>
                     <partial model="Model" name="_TagLoadMorePartial" />
 
-                  @*   @foreach (var item in Model)
-                    {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Title</td>
-                            <td class="text-center"><a class="btn btn-outline-info" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
-                            <td class="text-center"><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
-                        </tr>
-                    } *@
                 </tbody>
             </table>
         </div>
+
     </div>
 </div>

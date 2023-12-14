@@ -22,9 +22,11 @@ namespace Pustok_project.Areas.Admin.Controllers
         {
             var ms = await _db.Category.Select(s => new ViewModels.Category.CategoryListItemVM
             {
-                Name=s.Name,
+                Name = s.Name,
                 Id = s.Id,
-            }).ToListAsync();
+            })
+            .Take(5)
+                .ToListAsync();
             return View(ms);
 
         }
@@ -71,7 +73,7 @@ namespace Pustok_project.Areas.Admin.Controllers
 
             var data = await _db.Category.FindAsync(id);
             if (data == null) return NotFound();
-            data.Name=vm.Name;
+            data.Name = vm.Name;
 
 
             await _db.SaveChangesAsync();
@@ -90,6 +92,28 @@ namespace Pustok_project.Areas.Admin.Controllers
             await _db.SaveChangesAsync();
             //TempData["Response"] = true;
             return RedirectToAction(nameof(Index));
+        }
+        public IActionResult ShowMoreButton(int page = 1, int pageSize = 5)
+        {
+            var records = _db.Category.ToList()
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return View(records);
+        }
+        public IActionResult GetMoreRecords(int page = 1, int pageSize = 5)
+        {
+            var records = _db.Category.Select(c => new CategoryListItemVM
+            {
+                Id = c.Id,
+                Name = c.Name
+            })
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            return PartialView("_RecordPartial", records);
         }
     }
 }

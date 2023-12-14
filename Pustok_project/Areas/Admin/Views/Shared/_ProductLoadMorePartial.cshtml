@@ -1,0 +1,38 @@
+﻿@model LoadMoreVM<IEnumerable<ProductListItemVM>>
+
+    @section Scripts{
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    }
+    @section Styles{
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    }
+
+                      @foreach (var item in Model.Items)
+                {
+        <tr>
+            <td>@item.Id</td>
+            <td>@item.Name</td>
+            <td>@item.ProductCode</td>
+            <td>@item.Description</td>
+            <td>@item.About</td>
+            <td><img width="100" src="~/@item.ProductMainImg" /></td>
+
+            <td>@item.SellPrice</td>
+            <td>@item.CostPrice</td>
+            <td>@item.Discount</td>
+            <td>@item.Quantity</td>
+            @if (item.TagId == null || item.TagId.Count() == 0)
+            {
+                <td>No Tag</td>
+            }
+            else
+            {
+                <td>@string.Join(",",item.TagId.Select(x=>x))</td>
+            }
+            <td>@item.CategoryId</td>
+            <td>@item.IsDeleted</td>
+            <td class="text-center"><a class="btn btn-outline-info" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
+            <td class="text-center"><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+        </tr>
+                }
+            

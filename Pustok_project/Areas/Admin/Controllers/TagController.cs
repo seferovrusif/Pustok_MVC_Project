@@ -110,11 +110,6 @@ namespace Pustok_project.Areas.Admin.Controllers
             LoadMoreVM<IEnumerable<TagListItemVM>> pag = new(totalCount, page, (int)Math.Ceiling((decimal)totalCount / count), items);
 
             return PartialView("_TagLoadMorePartial", pag);
-            //eferfregdrg
-            //regerg
-
-            //sdfsdf
-            //esff
         }
     }
 }

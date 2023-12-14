@@ -8,9 +8,7 @@
 @section styles{
     <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 }
-@section scripts{
-    <script src="~/admin/js/demo/datatables-demo.js"></script>
-}
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Product</h6>
@@ -35,7 +33,7 @@
                 <th>IsDelete</th>
                 <th colspan="2">Action</th>
                 </thead>
-                <tbody>
+                <tbody id="records">
                     @foreach (var item in Model)
                     {
                         <tr>
@@ -67,5 +65,29 @@
                 </tbody>
             </table>
         </div>
+        
+        <button class="btn btn-outline-info" id="showMore">Load More</Button>
+
+        @section scripts
+        {    <script src="~/admin/js/demo/datatables-demo.js"></script>
+
+            <script>
+                var page = 2;
+                var pageSize = 2;
+                $("#showMore").click(function ()
+                {
+                    $.ajax(
+                    {
+                         type: "POST",
+                        url: "/Admin/Product/GetMoreRecords?page=" + page + "&pageSize=" + pageSize,
+                        success: function (data)
+                        {
+                            $("#records").append(data);
+                            page++;
+                        }
+                    });
+                });
+            </script>
+        }
     </div>
 </div>

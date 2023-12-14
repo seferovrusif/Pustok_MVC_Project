@@ -7,9 +7,7 @@
 @section styles{
     <link href="~/admin/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
 }
-@section scripts{
-    <script src="~/admin/js/demo/datatables-demo.js"></script>
-}
+
 <div class="card shadow mb-4">
     <div class="card-header py-3">
         <h6 class="m-0 font-weight-bold text-primary">Category</h6>
@@ -23,18 +21,45 @@
                 <th>Name</th>
                 <th colspan="2">Action</th>
                 </thead>
-                <tbody>
-                    @foreach (var item in Model)
+               <tbody id="records">
+                    @if (Model != null)
                     {
-                        <tr>
-                            <td>@item.Id</td>
-                            <td>@item.Name</td>
-                            <td class="text-center"><a class="btn btn-outline-info" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
-                            <td class="text-center"><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
-                        </tr>
-                    }
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@item.Id</td>
+                                <td>@item.Name</td>
+                                <td><a class="btn btn-outline-info" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
+                                <td><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+                            </tr>
+                        }
+                    } 
+                     else{<td class="text-center" colspan="4">No Data</td>}
                 </tbody>
             </table>
         </div>
+       
+        <button class="btn btn-outline-info" id="showMore">Load More</Button>
+
+        @section scripts
+        {
+            <script>
+                var page = 2;
+                var pageSize = 2;
+                $("#showMore").click(function ()
+                {
+                    $.ajax(
+                    {
+                         type: "POST",
+                        url: "/Admin/Category/GetMoreRecords?page=" + page + "&pageSize=" + pageSize,
+                        success: function (data)
+                        {
+                            $("#records").append(data);
+                            page++;
+                        }
+                    });
+                });
+            </script>
+        }
     </div>
 </div>
