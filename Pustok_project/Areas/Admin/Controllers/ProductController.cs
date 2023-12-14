@@ -7,6 +7,9 @@ using Pustok_project.ViewModels.ProductVM;
 using System.Xml.Linq;
 using Pustok_project.Helpers;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Pustok_project.ViewModels.Common;
+using Pustok_project.ViewModels.TagVM;
+using Pustok_project.Controllers;
 
 namespace Pustok_project.Areas.Admin.Controllers
 {
@@ -24,8 +27,11 @@ namespace Pustok_project.Areas.Admin.Controllers
         }
         public async Task<IActionResult> Index()
         {
-            var ms = await _db.Product.Select(s => new ProductListItemVM
+            int take = 4;
+
+            var items = _db.Product.Take(take).Select(s => new ProductListItemVM
             {
+
                 Id = s.Id,
                 Name = s.Name,
                 ProductCode = s.ProductCode,
@@ -40,8 +46,11 @@ namespace Pustok_project.Areas.Admin.Controllers
                 IsDeleted = s.IsDeleted,
                 TagId = s.TagProducts.Select(a => a.TagId).ToList(),
 
-            }).Take(1).ToListAsync();
-            return View(ms);
+            });
+            int count = await _db.Product.CountAsync();
+            PaginationVM<IEnumerable<ProductListItemVM>> pag = new(count, 1, (int)Math.Ceiling((decimal)count / take), items);
+
+            return View(pag);
 
         }
         public IActionResult Create()
@@ -178,6 +187,12 @@ namespace Pustok_project.Areas.Admin.Controllers
             {
                 return View(vm);
             }
+            
+
+            if (!vm.TagId.Any())
+            {
+                ModelState.AddModelError("TagId", "You must add at least 1 Tag");
+            }
             var data = await _db.Product
                               .Include(p => p.ProductImages)
 
@@ -202,7 +217,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                     TagId = id,
                 }).ToList();
             }
-            if (vm.ImageUrls != null)
+            if (vm.Images != null)
             {
                 var imgs = vm.Images.Select(i => new ProductImage
                 {
@@ -233,18 +248,11 @@ namespace Pustok_project.Areas.Admin.Controllers
             //TempData["Response"] = true;
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult ShowMoreButton(int page = 1, int pageSize = 5)
+       
+       
+        public async Task<IActionResult> ProductPagination(int page = 1, int count = 8)
         {
-            var records = _db.Product.ToList()
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
-
-            return View(records);
-        }
-        public IActionResult GetMoreRecords(int page = 1, int pageSize = 5)
-        {
-            var records = _db.Product.Select(s => new ProductListItemVM
+            var items = _db.Product.Skip((page - 1) * count).Take(count).Select(s => new ProductListItemVM
             {
 
                 Id = s.Id,
@@ -261,12 +269,11 @@ namespace Pustok_project.Areas.Admin.Controllers
                 IsDeleted = s.IsDeleted,
                 TagId = s.TagProducts.Select(a => a.TagId).ToList(),
 
-            })
-                .Skip((page - 1) * pageSize)
-                .Take(pageSize)
-                .ToList();
+            });
+            int totalCount = await _db.Product.CountAsync();
+            PaginationVM<IEnumerable<ProductListItemVM>> pag = new(totalCount, page, (int)Math.Ceiling((decimal)totalCount / count), items);
 
-            return PartialView("_ProductLoadMorePartial", records);
+            return PartialView("_ProductPaginationPartial", pag);
         }
     }
     }

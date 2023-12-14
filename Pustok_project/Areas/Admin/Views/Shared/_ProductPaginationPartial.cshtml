@@ -1,0 +1,62 @@
+﻿@model PaginationVM<IEnumerable<ProductListItemVM>>
+
+<table class="table table-bordered" width="100%" cellspacing="0">
+    <thead>
+    <th>Id</th>
+    <th>Name</th>
+    <th>ProductCode</th>
+    <th>Description</th>
+    <th>About</th>
+    <th>ProductMainImg</th>
+    <th>SellPrice</th>
+    <th>CostPrice</th>
+    <th>Discount</th>
+    <th>Quantity</th>
+    <th>TagId</th>
+    <th>CategoryId</th>
+    <th>IsDelete</th>
+    <th colspan="2">Action</th>
+    </thead>
+    <tbody id="records">
+        @foreach (var item in Model.Items)
+        {
+            <tr>
+                <td>@item.Id</td>
+                <td>@item.Name</td>
+                <td>@item.ProductCode</td>
+                <td>@item.Description</td>
+                <td>@item.About</td>
+                <td><img width="100" src="~/@item.ProductMainImg" /></td>
+
+                <td>@item.SellPrice</td>
+                <td>@item.CostPrice</td>
+                <td>@item.Discount</td>
+                <td>@item.Quantity</td>
+                @if (item.TagId == null || item.TagId.Count() == 0)
+                {
+                    <td>No Tag</td>
+                }
+                else
+                {
+                    <td>@string.Join(",",item.TagId.Select(x=>x))</td>
+                }
+                <td>@item.CategoryId</td>
+                <td>@item.IsDeleted</td>
+                <td class="text-center"><a class="btn btn-outline-info" asp-action="Update" asp-route-id="@item.Id">Update</a></td>
+                <td class="text-center"><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Delete</a></td>
+            </tr>
+        }
+    </tbody>
+</table>
+<nav aria-label="Page navigation example">
+    <ul id="prod-pag" class="pagination">
+        <li class="page-item  @(Model.HasPrev ? "" : "disabled")"><a class='page-link' asp-action="ProductPagination" asp-route-page="@(Model.CurrentPage - 1)" asp-route-count="4">Previous</a></li>
+        @for (int i = 1; i <= Model.LastPage; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")"><a class="page-link" asp-action="ProductPagination" asp-route-page="@i" asp-route-count="4">@i</a></li>
+        }
+        <li class="page-item @(Model.HasNext ? "" : "disabled")"><a class="page-link" asp-action="ProductPagination" asp-route-page="@(Model.CurrentPage + 1)" asp-route-count="4">Next</a></li>
+    </ul>
+</nav>
+
+</table>

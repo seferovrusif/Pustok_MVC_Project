@@ -55,7 +55,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 CreatedAt = DateTime.UtcNow,
                 UpdatedAt = DateTime.UtcNow,
                 AuthorId = vm.AuthorId,
-            TagBlogs = vm.TagId.Select(id => new TagBlog
+                TagBlogs = vm.TagId.Select(id => new TagBlog
                 {
                     TagId = id,
                 }).ToList(),

@@ -2,7 +2,7 @@
 
 namespace Pustok_project.ViewModels.Common
 {
-    public class LoadMoreVM<T> where T : IEnumerable
+    public class PaginationVM<T> where T : IEnumerable
     {
         public int TotalCount { get; }
         public int LastPage { get; }
@@ -10,7 +10,7 @@ namespace Pustok_project.ViewModels.Common
         public bool HasPrev { get; }
         public bool HasNext { get; }
         public T Items { get; }
-        public LoadMoreVM(int totalCount, int currentPage, int lastPage, T items)
+        public PaginationVM(int totalCount, int currentPage, int lastPage, T items)
         {
             if (currentPage <= 0)
             {

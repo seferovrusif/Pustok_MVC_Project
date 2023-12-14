@@ -28,7 +28,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 Title = p.Title
             });
             int count = await _db.Tag.CountAsync();
-            LoadMoreVM<IEnumerable<TagListItemVM>> pag = new(count, 1, (int)Math.Ceiling((decimal)count / take), items);
+            PaginationVM<IEnumerable<TagListItemVM>> pag = new(count, 1, (int)Math.Ceiling((decimal)count / take), items);
             //var ms = await _db.Tag.Select(t => new TagListItemVM
             //{
             //    Id = t.Id,
@@ -107,9 +107,9 @@ namespace Pustok_project.Areas.Admin.Controllers
                Title=p.Title
             });
             int totalCount = await _db.Tag.CountAsync();
-            LoadMoreVM<IEnumerable<TagListItemVM>> pag = new(totalCount, page, (int)Math.Ceiling((decimal)totalCount / count), items);
+            PaginationVM<IEnumerable<TagListItemVM>> pag = new(totalCount, page, (int)Math.Ceiling((decimal)totalCount / count), items);
 
-            return PartialView("_TagLoadMorePartial", pag);
+            return PartialView("_TagPaginationPartial", pag);
         }
 
     }

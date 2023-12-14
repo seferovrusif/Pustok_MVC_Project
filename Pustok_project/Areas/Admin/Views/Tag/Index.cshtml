@@ -1,4 +1,4 @@
-﻿@model LoadMoreVM<IEnumerable<TagListItemVM>>
+﻿@model PaginationVM<IEnumerable<TagListItemVM>>
 
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
@@ -29,7 +29,7 @@
     </div>
     <div class="card-body">
         <div class="table-responsive" id="dataTable">
-                <partial model="Model" name="_TagLoadMorePartial" />
+                <partial model="Model" name="_TagPaginationPartial" />
 
              
         </div>
