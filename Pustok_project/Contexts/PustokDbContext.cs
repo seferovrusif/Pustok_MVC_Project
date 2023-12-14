@@ -14,7 +14,19 @@ public class PustokDbContext:DbContext
     public DbSet<Tag> Tag { get; set; }
     public DbSet<TagBlog> TagBlog { get; set; }
     public DbSet<TagProduct> TagProduct { get; set; }
-
+    public DbSet<Setting> Settings { get; set; }
+    protected override void OnModelCreating(ModelBuilder modelBuilder)
+    {
+        modelBuilder.Entity<Setting>()
+            .HasData(new Setting
+            {
+                Id = 1,
+                Address = "Baku, Yasamal, Isfendiyar Zulalov 16",
+                Phone = "+994707094535",
+                Email = "haha@gmail.com",
+            });
+        base.OnModelCreating(modelBuilder);
+    }
 
 
 }

@@ -1,4 +1,11 @@
-﻿<!DOCTYPE html>
+﻿@using Pustok_project.Models
+@using Pustok_project.Helpers
+@inject FooterServices service;
+@{
+    Setting setting = await service.GetSettingsAsync();
+}
+
+<!DOCTYPE html>
 <html lang="zxx">
 
 
@@ -1030,9 +1037,9 @@
             </div>
         </div>
     </section>
-    <!--=================================
-    Footer Area
-    ===================================== -->
+    
+@*    /// Footer Area
+ *@
     <footer class="site-footer">
         <div class="container">
             <div class="row justify-content-between  section-padding">
@@ -1044,13 +1051,11 @@
                         <div class="footer-contact">
                             <p>
                                 <span class="label">Address:</span><span class="text">
-                                    Example Street 98, HH2 BacHa, New
-                                    York,
-                                    USA
+                                    @setting.Address
                                 </span>
                             </p>
-                            <p><span class="label">Phone:</span><span class="text">+18088 234 5678</span></p>
-                            <p><span class="label">Email:</span><span class="text">suport@hastech.com</span></p>
+                            <p><span class="label">Phone:</span><span class="text">@setting.Phone</span></p>
+                            <p><span class="label">Email:</span><span class="text">@setting.Email</span></p>
                         </div>
                     </div>
                 </div>
