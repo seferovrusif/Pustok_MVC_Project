@@ -4,43 +4,8 @@
 <!--=================================
         Hero Area
         ===================================== -->
-<section class="hero-area hero-slider-1">
-    <div class="sb-slick-slider" data-slick-setting='{
-                            "autoplay": true,
-                            "fade": true,
-                            "autoplaySpeed": 3000,
-                            "speed": 3000,
-                            "slidesToShow": 1,
-                            "dots":true
-                            }'>
-        @foreach (var item in Model.Sliders)
-        {
-            <div class="single-slide bg-shade-whisper  ">
-                <div class="container">
-                    <div class="home-content text-center text-sm-left position-relative">
-                        <div class="hero-partial-image image-right">
-                            <img src="@item.ImageUrl" alt="">
-                        </div>
-                        <div class="row no-gutters ">
-                            <div class="col-xl-6 col-md-6 col-sm-7">
-                                <div class="home-content-inner content-left-side">
-                                    <h1>
-                                        @item.Title
-                                    </h1>
-                                    <h2>@item.Text</h2>
-                                    <a href="shop-grid.html" class="btn btn-outlined--primary">
-                                        $@item.Price - Order Now!
-                                    </a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        }
+@await Component.InvokeAsync("Slider")
 
-    </div>
-</section>
 <!--=================================
 Home Features Section
 ===================================== -->

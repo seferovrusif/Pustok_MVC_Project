@@ -11,11 +11,11 @@
 @section scripts{
     <script>
 
-        $("#salam").on("click", "#prod-pag a", function (ev) {
+        $("#dataTable").on("click", "#prod-pag a", function (ev) {
             ev.preventDefault();
             fetch($(this).attr("href"))
                 .then(res => res.text())
-                .then(data => $("#salam").html(data))
+                .then(data => $("#dataTable").html(data))
         })
 
                 
@@ -28,18 +28,10 @@
         <a href="/Admin/Tag/Create" class="btn btn-outline-success">Create</a>
     </div>
     <div class="card-body">
-        <div class="table-responsive" >
-            <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                <thead id="salam">
-                <th>Id</th>
-                <th>Title</th>
-                <th colspan="2">Action</th>
-                </thead>
-                <tbody>
-                    <partial model="Model" name="_TagLoadMorePartial" />
+        <div class="table-responsive" id="dataTable">
+                <partial model="Model" name="_TagLoadMorePartial" />
 
-                </tbody>
-            </table>
+             
         </div>
 
     </div>

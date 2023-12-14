@@ -111,5 +111,6 @@ namespace Pustok_project.Areas.Admin.Controllers
 
             return PartialView("_TagLoadMorePartial", pag);
         }
+
     }
 }
