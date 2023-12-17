@@ -26,6 +26,8 @@ namespace Pustok_project.ViewModels.ProductVM
         public string ProductCode { get; set; }
         public string ProductMainImg { get; set; }
         public IEnumerable<int>? TagId { get; set; }
+        public ICollection<Tag>? TagProd { get; set; }
+
 
     }
 }

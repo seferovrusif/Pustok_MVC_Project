@@ -10,6 +10,8 @@ builder.Services.AddDbContext<PustokDbContext>(options =>
 {
     options.UseSqlServer(builder.Configuration["ConnectionStrings:MSSql"]);
 });
+builder.Services.AddSession();
+
 builder.Services.AddScoped<FooterServices>();
 
 var app = builder.Build();

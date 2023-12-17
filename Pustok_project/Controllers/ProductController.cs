@@ -1,6 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+using Newtonsoft.Json;
+using NuGet.Versioning;
 using Pustok_project.Contexts;
+using Pustok_project.Models;
+using Pustok_project.ViewModels.BasketVM;
 using Pustok_project.ViewModels.ProductVM;
 using System.Collections;
 
@@ -17,12 +21,11 @@ namespace Pustok_project.Controllers
 
         public async Task<IActionResult> Index(int id)
         {
-            int ProductId = id;
             if (id == null || id <= 0) return BadRequest();
             var s = await _context.Product.FindAsync(id);
-            //var a = (await _context.ProductImages.Where(x => x.ProductId =ProductId)).;
             if (s == null) return NotFound();
-            return View(new UsersProductListItemVM
+
+            var vm= new UsersProductListItemVM
             {
                 Id = id,
                 Name = s.Name,
@@ -34,9 +37,36 @@ namespace Pustok_project.Controllers
                 ProductMainImg = s.ProductMainImg,
                 CategoryId = s.CategoryId,
                 ProductCode = s.ProductCode,
-                ///Imagesss=s.ProductImages.Select(a=>a.ProductId).ToList()
+
+            };
+           
+            return View(vm);
+
+
+        }
+        public async Task<IActionResult> AddBasket(int? id)
+        {
+            if (id == null || id <= 0) return BadRequest();
+            if (!await _context.Product.AnyAsync(p => p.Id == id)) return NotFound();
+            var basket = JsonConvert.DeserializeObject<List<BasketProductAndCountVM>>(HttpContext.Request.Cookies["basket"] ?? "[]");
+            var existItem = basket.Find(b => b.ProdId == id);
+            if (existItem == null)
+            {
+                basket.Add(new BasketProductAndCountVM
+                {
+                    ProdId = (int)id,
+                    Count = 1
+                });
+            }
+            else
+            {
+                existItem.Count++;
+            }
+            HttpContext.Response.Cookies.Append("basket", JsonConvert.SerializeObject(basket), new CookieOptions
+            {
+                MaxAge = TimeSpan.MaxValue
             });
-          
+            return Ok();
         }
     }
 }

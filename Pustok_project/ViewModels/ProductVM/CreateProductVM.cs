@@ -25,7 +25,7 @@ namespace Pustok_project.ViewModels.ProductVM
         public IFormFile ProductMainImg { get; set; }
 
         public bool IsDeleted { get; set; } = false;
-        public IEnumerable<int>? TagId { get; set; }
+        public ICollection <int>? TagId { get; set; }
 
         public IEnumerable<IFormFile>? ProductImages { get; set; }
 

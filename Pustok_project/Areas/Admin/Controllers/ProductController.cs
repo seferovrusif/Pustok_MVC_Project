@@ -100,7 +100,7 @@ namespace Pustok_project.Areas.Admin.Controllers
             }
             if (!ModelState.IsValid)
             {
-                ViewBag.Categories = _db.Category;
+                ViewBag.Category = _db.Category;
                 ViewBag.Tag = new SelectList(_db.Tag, "Id", "Name");
                 return View(vm);
             }
@@ -116,7 +116,7 @@ namespace Pustok_project.Areas.Admin.Controllers
             //               select c.Id).CountAsync();
             if (await _db.Tag.Where(c => vm.TagId.Contains(c.Id)).Select(c => c.Id).CountAsync() != vm.TagId.Count())
             {
-                ModelState.AddModelError("ColorIds", "Color doesnt exist");
+                ModelState.AddModelError("TagId", "Tag doesnt exist");
                 ViewBag.Category = _db.Category;
                 ViewBag.Tag = _db.Tag;
                 return View(vm);

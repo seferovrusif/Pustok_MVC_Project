@@ -19,7 +19,7 @@ namespace Pustok_project.ViewModels.ProductVM
         public decimal CostPrice { get; set; }
         public string ProductMainImg { get; set; }
         public int CategoryId { get; set; }
-        public IEnumerable<int> TagId { get; set; }
+        public ICollection<int>? TagId { get; set; }
 
         [Range(0, 100)]
         public float Discount { get; set; }

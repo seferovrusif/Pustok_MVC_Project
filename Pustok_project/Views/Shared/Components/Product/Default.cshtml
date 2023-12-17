@@ -25,6 +25,7 @@
                 <div class="single-slide">
                     <div class="product-card card-style-list">
                         <div class="card-image">
+                            <a asp-controller="Product" asp-route-id="@item.Id" class="author">  </a>
                             <img width="80px" height="120" src="~/@item.ProductMainImg" alt="">
                         </div>
                         <div class="product-card--body">
@@ -32,7 +33,7 @@
                                 <a asp-controller="Product" asp-route-id="@item.Id" class="author">
                                     @item.Name
                                 </a>
-                                <h3><a href="~/Product">@item.About</a></h3>
+                                <h3><a asp-controller="Product" asp-route-id="@item.Id" class="author">@item.About</a></h3>
                             </div>
                             <div class="price-block">
                                 <span class="price">£@item.SellPrice</span>
