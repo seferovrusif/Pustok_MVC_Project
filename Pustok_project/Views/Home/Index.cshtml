@@ -6,7 +6,6 @@
             fetch($(this).attr("href"))
                 .then(res => {
                     if (res.ok) {
-                        Command: toastr["success"]("Product added")
                         fetch(window.location.origin+'/Home/GetBasket')
                         .then(res=> res.text())
                         .then(data=>$("#basket").html(data))
@@ -73,6 +72,8 @@ Home Features Section
         </div>
     </div>
 </section>
+@await Component.InvokeAsync("ArtProduct")
+
 <!--=================================
 Promotion Section One
 ===================================== -->

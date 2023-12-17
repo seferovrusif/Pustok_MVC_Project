@@ -14,13 +14,13 @@
             <i class="fas fa-chevron-down"></i>
         </span>
     </div>
+        <div class="cart-dropdown-block" style="overflow-y:scroll" >
     @foreach(BasketProductItemVM item in Model)
     {
-    <div class="cart-dropdown-block">
         <div class=" single-cart-block ">
             <div class="cart-product">
                 <a href="product-details.html" class="image">
-                    <img src="image/products/cart-product-1.jpg" alt="">
+                    <img src="~/@item.ImageUrl" alt="">
                 </a>
                 <div class="content">
                     <h3 class="title">
@@ -33,6 +33,7 @@
                 </div>
             </div>
         </div>
+    }
         <div class=" single-cart-block ">
             <div class="btn-block">
                 <a href="cart.html" class="btn">
@@ -44,5 +45,4 @@
             </div>
         </div>
     </div>
-    }
 </div>
