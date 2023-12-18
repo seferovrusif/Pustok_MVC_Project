@@ -25,7 +25,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 Name = s.Name,
                 Id = s.Id,
             })
-            .Take(5)
+            .Take(2)
                 .ToListAsync();
             return View(ms);
 
@@ -93,7 +93,7 @@ namespace Pustok_project.Areas.Admin.Controllers
             //TempData["Response"] = true;
             return RedirectToAction(nameof(Index));
         }
-        public IActionResult ShowMoreButton(int page = 1, int pageSize = 5)
+        public IActionResult ShowMoreButton(int page = 1, int pageSize = 2)
         {
             var records = _db.Category.ToList()
                 .Skip((page - 1) * pageSize)
