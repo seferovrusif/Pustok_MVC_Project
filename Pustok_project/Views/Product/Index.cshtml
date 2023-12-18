@@ -6,6 +6,44 @@
     <link rel="stylesheet" type="text/css" media="screen" href="~/css/main.css" />
     <link rel="shortcut icon" type="image/x-icon" href="~/image/favicon.ico">
 }
+@section scripts
+    {
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $("body").on("click", ".single-btn", function (ev) {
+            ev.preventDefault();
+            fetch($(this).attr("href"))
+                .then(res => {
+                    if (res.ok) {
+                        Command: toastr["success"]("Product added")
+                        // fetch(window.location.origin + '/Home/GetBasket')
+                        //     .then(res => res.text())
+                        //     .then(data => $("#basket").html(data))
+                        toastr.options = {
+                            "closeButton": false,
+                            "debug": false,
+                            "newestOnTop": false,
+                            "progressBar": true,
+                            "positionClass": "toast-top-right",
+                            "preventDuplicates": false,
+                            "onclick": null,
+                            "showDuration": "300",
+                            "hideDuration": "500",
+                            "timeOut": "1000",
+                            "extendedTimeOut": "1000",
+                            "showEasing": "swing",
+                            "hideEasing": "linear",
+                            "showMethod": "fadeIn",
+                            "hideMethod": "fadeOut"
+                        }
+                        window.location.reload()
+                    }
+                })
+
+        })
+
+    </script>
+}
 <main class="inner-page-sec-padding-bottom">
     <div class="container">
         <div class="row  mb--60">
@@ -22,13 +60,13 @@
                     <div class="single-slide">
                         <img src="~/@Model.ProductMainImg" alt="">
                     </div>
-                 @*    @foreach (var item in Model.Imagess)
+                    @*    @foreach (var item in Model.Imagess)
                     {
-                        <div class="single-slide">
-                            <img src="~/@item" alt="">
-                        </div>
+                    <div class="single-slide">
+                    <img src="~/@item" alt="">
+                    </div>
                     }
- *@
+                    *@
                 </div>
                 <!-- Product Details Slider Nav -->
                 <div class="mt--30 product-slider-nav sb-slick-slider arrow-type-two" data-slick-setting='{
@@ -61,28 +99,28 @@
             </div>
             <div class="col-lg-7">
                 <div class="product-details-info pl-lg--30 ">
-                    <p class="tag-block">
-                        Tags: <a href="#"></a>
-                        @foreach(var item in Model.TagProd)
-                        @if (Model.TagProd == null || Model.TagProd.Count() == 0)
+                    @* <p class="tag-block">
+                        Tags:
+                        @if (Model.Tag == null || Model.Tag.Count() == 0)
                         {
                             <a href="#">NO TAG</a>
                         }
                         else
                         {
-                             <a href="#">@item.Title</a> 
+                           
+                                <a href="#">@string.Join(",",Model.Tag.Select(x=>x.Title))</a>
+                            
                         }
-                         
-                       
-     
+                        
+
+                     
                     </p>
-                    <h3 class="product-title">@Model.Name</h3>
+ *@                    <h3 class="product-title">@Model.Name</h3>
                     <ul class="list-unstyled">
-                        <li>Ex Tax: <span class="list-value"> £@Model.Discount</span></li>
                         <li>Brands: <a href="#" class="list-value font-weight-bold"> Canon</a></li>
                         <li>Product Code: <span class="list-value"> @Model.ProductCode</span></li>
-                        <li>Reward Points: <span class="list-value"> 200</span></li>
                         <li>Availability: <span class="list-value"> @Model.Quantity</span></li>
+                        <li>Discount: <span class="list-value"> £@Model.Discount</span></li>
                     </ul>
                     <div class="price-block">
                         <span class="price-new">£@Model.SellPrice</span>
@@ -114,8 +152,9 @@
                             <span class="widget-label">Qty</span>
                             <input type="number" class="form-control text-center" value="1">
                         </div>
+                      
                         <div class="add-cart-btn">
-                            <a href="#" class="btn btn-outlined--primary">
+                            <a asp-controller="Product" asp-route-id="@Model.Id" class="btn btn-outlined--primary">
                                 <span class="plus-icon">+</span>Add to
                                 Cart
                             </a>

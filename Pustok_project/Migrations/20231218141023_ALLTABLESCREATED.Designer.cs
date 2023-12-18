@@ -12,8 +12,8 @@ using Pustok_project.Contexts;
 namespace Pustok_project.Migrations
 {
     [DbContext(typeof(PustokDbContext))]
-    [Migration("20231212003536_all")]
-    partial class all
+    [Migration("20231218141023_ALLTABLESCREATED")]
+    partial class ALLTABLESCREATED
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -187,6 +187,40 @@ namespace Pustok_project.Migrations
                     b.ToTable("ProductImages");
                 });
 
+            modelBuilder.Entity("Pustok_project.Models.Setting", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Address")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Email")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Phone")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Settings");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Address = "Baku, Yasamal, Isfendiyar Zulalov 16",
+                            Email = "haha@gmail.com",
+                            Phone = "+994707094535"
+                        });
+                });
+
             modelBuilder.Entity("Pustok_project.Models.Slider", b =>
                 {
                     b.Property<int>("Id")
@@ -339,19 +373,19 @@ namespace Pustok_project.Migrations
 
             modelBuilder.Entity("Pustok_project.Models.TagProduct", b =>
                 {
-                    b.HasOne("Pustok_project.Models.Product", "Blog")
+                    b.HasOne("Pustok_project.Models.Product", "Product")
                         .WithMany("TagProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Pustok_project.Models.Tag", "Tag")
-                        .WithMany()
+                        .WithMany("TagProducts")
                         .HasForeignKey("TagId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Blog");
+                    b.Navigation("Product");
 
                     b.Navigation("Tag");
                 });
@@ -381,6 +415,8 @@ namespace Pustok_project.Migrations
             modelBuilder.Entity("Pustok_project.Models.Tag", b =>
                 {
                     b.Navigation("TagBlogs");
+
+                    b.Navigation("TagProducts");
                 });
 #pragma warning restore 612, 618
         }

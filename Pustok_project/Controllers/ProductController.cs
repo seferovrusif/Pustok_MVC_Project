@@ -24,8 +24,8 @@ namespace Pustok_project.Controllers
             if (id == null || id <= 0) return BadRequest();
             var s =  await _context.Product.Include(t => t.TagProducts).FirstOrDefaultAsync(p=>p.Id == id);
             if (s == null) return NotFound();
-            var a = s.TagProducts.Select(p => p.Tag);
-            /*var a = _context.Product.Include(t => t.TagProducts).ThenInclude(tg => tg.Tag);*/
+            //var a = s.TagProducts.Select(p => p.Tag);
+            //var b = _context.Tag.Include(t => t.TagProducts).ThenInclude(p => p.Product);
 
             var vm = new UsersProductListItemVM
             {
@@ -39,7 +39,8 @@ namespace Pustok_project.Controllers
                 ProductMainImg = s.ProductMainImg,
                 CategoryId = s.CategoryId,
                 ProductCode = s.ProductCode,
-                TagProd = s.TagProducts.Select(p => p.Tag)
+                //Tag = s.TagProducts.Select(a => a.Tag).ToList(),
+
 
             };
            

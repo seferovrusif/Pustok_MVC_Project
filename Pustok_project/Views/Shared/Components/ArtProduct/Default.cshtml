@@ -23,12 +23,12 @@
                 <div class="single-slide ">
                     <div class="product-card">
                         <div class="product-header">
-                            <a href="#" class="author">
-                                Lpple
+                            <a asp-controller="Product" asp-route-id="@item.Id" class="author">
+                                @item.Name
                             </a>
                             <h3>
-                                <a href="product-details.html">
-                                    @item.Name
+                                <a asp-controller="Product" asp-route-id="@item.Id" class="author">
+                                    @item.Description
                                 </a>
                             </h3>
                         </div>

@@ -5,7 +5,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" integrity="sha512-vKMx8UnXk60zUwyUnUPM3HbQo8QfmNx7+ltw8Pm5zLusl1XIfwcxo8DbWCqMGKaWeNxWA8yrx5v3SaVpMvR3CA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 }
 @section scripts
-{
+    {
     <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js" integrity="sha512-VEd+nq25CkR676O+pLBnDW09R7VQX9Mdiij052gVCp5yVH3jGtH70Ho/UUv4mJDsEdTvqRCFZg0NKGiojGnUCw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         $("body").on("click", ".single-btn", function (ev) {
@@ -34,29 +34,29 @@
                             "showMethod": "fadeIn",
                             "hideMethod": "fadeOut"
                         }
+                        window.location.reload()
                     }
                 })
-            window.location.reload()
 
         })
-        // toastr.options = {
-        //     "closeButton": false,
-        //     "debug": false,
-        //     "newestOnTop": false,
-        //     "progressBar": true,
-        //     "positionClass": "toast-top-right",
-        //     "preventDuplicates": false,
-        //     "onclick": null,
-        //     "showDuration": "300",
-        //     "hideDuration": "500",
-        //     "timeOut": "1000",
-        //     "extendedTimeOut": "1000",
-        //     "showEasing": "swing",
-        //     "hideEasing": "linear",
-        //     "showMethod": "fadeIn",
-        //     "hideMethod": "fadeOut"
-        // }
-       
+                // toastr.options = {
+                //     "closeButton": false,
+                //     "debug": false,
+                //     "newestOnTop": false,
+                //     "progressBar": true,
+                //     "positionClass": "toast-top-right",
+                //     "preventDuplicates": false,
+                //     "onclick": null,
+                //     "showDuration": "300",
+                //     "hideDuration": "500",
+                //     "timeOut": "1000",
+                //     "extendedTimeOut": "1000",
+                //     "showEasing": "swing",
+                //     "hideEasing": "linear",
+                //     "showMethod": "fadeIn",
+                //     "hideMethod": "fadeOut"
+                // }
+
     </script>
 }
 
@@ -143,7 +143,7 @@ Promotion Section One
 <!--=================================
 Home Slider Tab
 ===================================== -->
-<section class="section-padding">
+@* <section class="section-padding">
     <h2 class="sr-only">Home Tab Slider Section</h2>
     <div class="container">
         <div class="sb-custom-tab">
@@ -1819,10 +1819,11 @@ Home Slider Tab
         </div>
     </div>
 </section>
-<!--=================================
+ *@<!--=================================
 Deal of the day
 ===================================== -->
-<section class="section-margin">
+
+@* <section class="section-margin">
     <div class="container-fluid">
         <div class="promo-section-heading">
             <h2>Deal of the day up to 20% off Special offer</h2>
@@ -2154,7 +2155,7 @@ Deal of the day
             </div>
         </div>
     </div>
-</section>
+</section> *@
 <!--=================================
 Best Seller Product
 ===================================== -->

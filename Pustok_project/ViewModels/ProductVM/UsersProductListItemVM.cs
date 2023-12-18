@@ -7,6 +7,7 @@ namespace Pustok_project.ViewModels.ProductVM
     {
         public int Id { get; set; }
         public string Name { get; set; }
+        public string ProductCode { get; set; }
         [MaxLength(128)]
         public string? About { get; set; }
         public string? Description { get; set; }
@@ -14,19 +15,15 @@ namespace Pustok_project.ViewModels.ProductVM
         public decimal SellPrice { get; set; }
         [Column(TypeName = "smallmoney")]
         public decimal CostPrice { get; set; }
+        public string ProductMainImg { get; set; }
+        public int CategoryId { get; set; }
+        public ICollection<int>? TagId { get; set; }
+        public IEnumerable<Tag>? Tag { get; set; }
         [Range(0, 100)]
         public float Discount { get; set; }
         public ushort Quantity { get; set; }
-        public IFormFile? ImageFile { get; set; }
-        public IEnumerable<IFormFile>? Images { get; set; }
-        public IEnumerable<ProductImage>? Imagess { get; set; }
-        public IEnumerable<int>? Imagesss { get; set; }
-        public int CategoryId { get; set; }
+        public IEnumerable<string>? Imagesss { get; set; }
  
-        public string ProductCode { get; set; }
-        public string ProductMainImg { get; set; }
-        //public IEnumerable<int>? TagId { get; set; }
-        public IEnumerable<Tag>? TagProd { get; set; }
 
 
     }

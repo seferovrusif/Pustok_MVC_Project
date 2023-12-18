@@ -371,7 +371,7 @@ namespace Pustok_project.Migrations
 
             modelBuilder.Entity("Pustok_project.Models.TagProduct", b =>
                 {
-                    b.HasOne("Pustok_project.Models.Product", "Blog")
+                    b.HasOne("Pustok_project.Models.Product", "Product")
                         .WithMany("TagProducts")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -383,7 +383,7 @@ namespace Pustok_project.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.Navigation("Blog");
+                    b.Navigation("Product");
 
                     b.Navigation("Tag");
                 });
