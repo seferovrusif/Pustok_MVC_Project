@@ -44,7 +44,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 CategoryId = s.CategoryId,
                 ProductMainImg = s.ProductMainImg,
                 IsDeleted = s.IsDeleted,
-                TagId = s.TagProducts.Select(a => a.TagId).ToList(),
+                Tag = s.TagProducts.Select(a => a.Tag).ToList(),
 
             });
             int count = await _db.Product.CountAsync();

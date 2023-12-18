@@ -32,13 +32,13 @@
                 <td>@item.CostPrice</td>
                 <td>@item.Discount</td>
                 <td>@item.Quantity</td>
-                @if (item.TagId == null || item.TagId.Count() == 0)
+                @if (item.Tag == null || item.Tag.Count() == 0)
                 {
                     <td>No Tag</td>
                 }
                 else
                 {
-                    <td>@string.Join(",",item.TagId.Select(x=>x))</td>
+                    <td>@string.Join(",",item.Tag.Select(x=>x.Title))</td>
                 }
                 <td>@item.CategoryId</td>
                 <td>@item.IsDeleted</td>

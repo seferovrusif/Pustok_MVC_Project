@@ -62,7 +62,19 @@
             <div class="col-lg-7">
                 <div class="product-details-info pl-lg--30 ">
                     <p class="tag-block">
-                        Tags: <a href="#"></a> <a href="#">Omega</a>
+                        Tags: <a href="#"></a>
+                        @foreach(var item in Model.TagProd)
+                        @if (Model.TagProd == null || Model.TagProd.Count() == 0)
+                        {
+                            <a href="#">NO TAG</a>
+                        }
+                        else
+                        {
+                             <a href="#">@item.Title</a> 
+                        }
+                         
+                       
+     
                     </p>
                     <h3 class="product-title">@Model.Name</h3>
                     <ul class="list-unstyled">

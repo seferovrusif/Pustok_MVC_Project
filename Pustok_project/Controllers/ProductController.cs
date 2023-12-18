@@ -22,10 +22,12 @@ namespace Pustok_project.Controllers
         public async Task<IActionResult> Index(int id)
         {
             if (id == null || id <= 0) return BadRequest();
-            var s = await _context.Product.FindAsync(id);
+            var s =  await _context.Product.Include(t => t.TagProducts).FirstOrDefaultAsync(p=>p.Id == id);
             if (s == null) return NotFound();
+            var a = s.TagProducts.Select(p => p.Tag);
+            /*var a = _context.Product.Include(t => t.TagProducts).ThenInclude(tg => tg.Tag);*/
 
-            var vm= new UsersProductListItemVM
+            var vm = new UsersProductListItemVM
             {
                 Id = id,
                 Name = s.Name,
@@ -37,6 +39,7 @@ namespace Pustok_project.Controllers
                 ProductMainImg = s.ProductMainImg,
                 CategoryId = s.CategoryId,
                 ProductCode = s.ProductCode,
+                TagProd = s.TagProducts.Select(p => p.Tag)
 
             };
            

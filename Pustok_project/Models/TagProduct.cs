@@ -10,6 +10,7 @@ namespace Pustok_project.Models
         [Required]
         public int ProductId { get; set; }
         public Tag? Tag { get; set; }
-        public Product? Blog { get; set; }
+        public Product? Product { get; set; }
+
     }
 }
