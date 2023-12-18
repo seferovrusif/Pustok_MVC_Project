@@ -51,6 +51,11 @@
                 <span asp-validation-for="ProductMainImg" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="ProductHoverImg">ProductHoverImg</label>
+                <input asp-for="ProductHoverImg" accept="image/*" class="form-control">
+                <span asp-validation-for="ProductHoverImg" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="ProductImages">ProductImages</label>
                 <input asp-for="ProductImages" accept="image/*" class="form-control">
                 <div class="text-danger " asp-validation-summary=ModelOnly></div>

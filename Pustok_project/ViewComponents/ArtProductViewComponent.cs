@@ -27,7 +27,8 @@ namespace Pustok_project.ViewComponents
                 Discount = p.Discount,
                 Quantity = p.Quantity,
                 CategoryId = p.CategoryId,
-                ProductMainImg = p.ProductMainImg
+                ProductMainImg = p.ProductMainImg,
+                ProductHoverImg=p.ProductHoverImg
             }).ToListAsync());
         }
 

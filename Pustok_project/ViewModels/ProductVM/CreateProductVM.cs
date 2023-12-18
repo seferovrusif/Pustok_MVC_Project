@@ -23,6 +23,7 @@ namespace Pustok_project.ViewModels.ProductVM
         public int CategoryId { get; set; }
 
         public IFormFile ProductMainImg { get; set; }
+        public IFormFile ProductHoverImg { get; set; }
 
         public bool IsDeleted { get; set; } = false;
         public ICollection <int>? TagId { get; set; }

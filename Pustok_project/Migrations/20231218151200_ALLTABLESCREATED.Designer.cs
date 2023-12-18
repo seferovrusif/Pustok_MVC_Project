@@ -12,7 +12,7 @@ using Pustok_project.Contexts;
 namespace Pustok_project.Migrations
 {
     [DbContext(typeof(PustokDbContext))]
-    [Migration("20231218141023_ALLTABLESCREATED")]
+    [Migration("20231218151200_ALLTABLESCREATED")]
     partial class ALLTABLESCREATED
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -147,6 +147,10 @@ namespace Pustok_project.Migrations
                         .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
+
+                    b.Property<string>("ProductHoverImg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("ProductMainImg")
                         .IsRequired()

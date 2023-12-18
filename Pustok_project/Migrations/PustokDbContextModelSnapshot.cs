@@ -146,6 +146,10 @@ namespace Pustok_project.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
+                    b.Property<string>("ProductHoverImg")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ProductMainImg")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");

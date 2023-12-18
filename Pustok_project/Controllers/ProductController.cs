@@ -37,6 +37,7 @@ namespace Pustok_project.Controllers
                 Discount = s.Discount,
                 Quantity = s.Quantity,
                 ProductMainImg = s.ProductMainImg,
+                ProductHoverImg = s.ProductHoverImg,
                 CategoryId = s.CategoryId,
                 ProductCode = s.ProductCode,
                 //Tag = s.TagProducts.Select(a => a.Tag).ToList(),

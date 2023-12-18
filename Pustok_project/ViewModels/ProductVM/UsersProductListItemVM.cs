@@ -16,6 +16,7 @@ namespace Pustok_project.ViewModels.ProductVM
         [Column(TypeName = "smallmoney")]
         public decimal CostPrice { get; set; }
         public string ProductMainImg { get; set; }
+        public string ProductHoverImg { get; set; }
         public int CategoryId { get; set; }
         public ICollection<int>? TagId { get; set; }
         public IEnumerable<Tag>? Tag { get; set; }

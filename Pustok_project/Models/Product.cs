@@ -10,6 +10,7 @@ namespace Pustok_project.Models
         public string Name { get; set; }
         [MaxLength(16)]
         public string ProductCode { get; set; }
+        public string ProductHoverImg { get; set; }
         public string ProductMainImg { get; set; }
         [MaxLength(128)]
         public string? About { get; set; }

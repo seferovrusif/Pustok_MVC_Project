@@ -62,11 +62,19 @@ namespace Pustok_project.Areas.Admin.Controllers
         [HttpPost]
         public async Task<IActionResult> Create(CreateProductVM vm)
         {
-            if (vm.ProductMainImg != null)
+            if (vm.ProductMainImg != null && vm.ProductHoverImg != null)
             {
                 if (!vm.ProductMainImg.IsCorrectType())
                 {
                     ModelState.AddModelError("ProductMainImg", "Wrong file type");
+                }
+                if (!vm.ProductHoverImg.IsCorrectType())
+                {
+                    ModelState.AddModelError("ProductHoverImg", "Wrong file type");
+                }
+                if (!vm.ProductHoverImg.IsValidSize())
+                {
+                    ModelState.AddModelError("ProductHoverImg", "Files length must be less than kb");
                 }
                 if (!vm.ProductMainImg.IsValidSize())
                 {
@@ -134,6 +142,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 Quantity = vm.Quantity,
                 IsDeleted = vm.IsDeleted,
                 ProductMainImg = vm.ProductMainImg.SaveAsync(PathConstants.Productimages).Result,
+                ProductHoverImg = vm.ProductHoverImg.SaveAsync(PathConstants.Productimages).Result,
                 TagProducts = vm.TagId.Select(id => new TagProduct
                 {
                     TagId = id,

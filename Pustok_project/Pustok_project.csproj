@@ -27,7 +27,6 @@
   <ItemGroup>
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\Admin\Models\" />
-    <Folder Include="Migrations\" />
     <Folder Include="wwwroot\Admin\" />
     <Folder Include="wwwroot\lib\productimg\" />
     <Folder Include="wwwroot\Productimages\s\" />
