@@ -15,6 +15,31 @@ namespace Pustok_project.Controllers
             _signInManager = signInManager;
             _userManager = userManager;
         }
+        public IActionResult Login()
+        {
+            return View();
+        }
+        [HttpPost]
+        public async Task<IActionResult> Login(LoginVM vm)
+        {
+            AppUser user;
+            if (!vm.UserNameOrEmail.Contains("@"))
+            {
+                user= await _userManager.FindByEmailAsync(vm.UserNameOrEmail);
+            }
+            else
+            {
+                user=await _userManager.FindByNameAsync(vm.UserNameOrEmail);
+            }
+            if (user == null)
+            {
+                ModelState.AddModelError("", "Username or password is wrong");
+                return View(vm);
+            }
+            var result = await _signInManager.PasswordSignInAsync(user, vm.Password, vm.IsRemember, true);
+
+            return View();
+        }
 
         public IActionResult Register()
         {
@@ -33,15 +58,16 @@ namespace Pustok_project.Controllers
                 Email = vm.Email,
                 UserName = vm.Username
             }, vm.Password);
-            if (!result.Succeeded)
-            {
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-                return View(vm);
-            }
+            //if (!result.Succeeded)
+            //{
+            //    foreach (var error in result.Errors)
+            //    {
+            //        ModelState.AddModelError("", error.Description);
+            //    }
+            //    return View(vm);
+            //}
             return View();
+            return RedirectToAction(nameof(Login));
         }
     }
 }
