@@ -4,10 +4,12 @@ using Pustok_project.Contexts;
 using Microsoft.EntityFrameworkCore;
 using Pustok_project.ViewModels.SliderVM;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pustok_project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin, Moderator")]
     public class CategoryController : Controller
     {
         PustokDbContext _db { get; }

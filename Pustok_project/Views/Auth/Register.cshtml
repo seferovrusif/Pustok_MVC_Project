@@ -1,126 +1,119 @@
 ﻿@using Pustok_project.ViewModels.AuthVM;
 @model RegisterVM
-@{
+@* @{
 	Layout = null;
 }html lang="zxx">
+ *@
+<!DOCTYPE html>
+<html lang="zxx">
 
-</html>
+
 <!-- Mirrored from demo.hasthemes.com/pustok-preview/pustok/login-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Mar 2021 10:43:11 GMT -->
-
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<title>Pustok - Book Store HTML Template</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<!-- Use Minified Plugins Version For Fast Page Load -->
+	@section styles{
+	<link rel="stylesheet" type="text/css" media="screen" href="~/css/plugins.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="~/css/main.css" />
+	<link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+	}
+	</head>
 
 <body>
 
-		<!--=============================================
-		=            Login Register page content         =
-		=============================================-->
-		<main class="page-section inner-page-sec-padding-bottom">
-			<div class="container">
-				<div class="row">
-					<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
-						<!-- Login Form s-->
-						<form action="#">
-							<div class="login-form">
-								<h4 class="login-title">New Customer</h4>
-								<p><span class="font-weight-bold">I am a new customer</span></p>
-								<div class="row">
-									<div class="col-md-12 col-12 mb--15">
-										<label for="email">Full Name</label>
-										<input class="mb-0 form-control" type="text" id="name"
-											   placeholder="Enter your full name">
-									</div>
-									<div class="col-12 mb--20">
-										<label for="email">Email</label>
-										<input class="mb-0 form-control" type="email" id="email" placeholder="Enter Your Email Address Here..">
-									</div>
-									<div class="col-lg-6 mb--20">
-										<label for="password">Password</label>
-										<input class="mb-0 form-control" type="password" id="password" placeholder="Enter your password">
-									</div>
-									<div class="col-lg-6 mb--20">
-										<label for="password">Repeat Password</label>
-										<input class="mb-0 form-control" type="password" id="repeat-password" placeholder="Repeat your password">
-									</div>
-									<div class="col-md-12">
-										<a href="#" class="btn btn-outlined">Register</a>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-					<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
-						<form action="https://demo.hasthemes.com/pustok-preview/pustok/">
-							<div class="login-form">
-								<h4 class="login-title">Returning Customer</h4>
-								<p><span class="font-weight-bold">I am a returning customer</span></p>
-								<div class="row">
-									<div class="col-md-12 col-12 mb--15">
-										<label for="email">Enter your email address here...</label>
-										<input class="mb-0 form-control" type="email" id="email1"
-											   placeholder="Enter you email address here...">
-									</div>
-									<div class="col-12 mb--20">
-										<label for="password">Password</label>
-										<input class="mb-0 form-control" type="password" id="login-password" placeholder="Enter your password">
-									</div>
-									<div class="col-md-12">
-										<a href="#" class="btn btn-outlined">Login</a>
-									</div>
-								</div>
-							</div>
-						</form>
-					</div>
-				</div>
-			</div>
-		</main>
-	<!--=================================
-	  Brands Slider
-	===================================== -->
-	<section class="section-margin">
-		<h2 class="sr-only">Brand Slider</h2>
+	<!--=============================================
+	=            Login Register page content         =
+	=============================================-->
+	<main class="page-section inner-page-sec-padding-bottom">
 		<div class="container">
-			<div class="brand-slider sb-slick-slider border-top border-bottom" data-slick-setting='{
-											"autoplay": true,
-											"autoplaySpeed": 8000,
-											"slidesToShow": 6
-											}' data-slick-responsive='[
-				{"breakpoint":992, "settings": {"slidesToShow": 4} },
-				{"breakpoint":768, "settings": {"slidesToShow": 3} },
-				{"breakpoint":575, "settings": {"slidesToShow": 3} },
-				{"breakpoint":480, "settings": {"slidesToShow": 2} },
-				{"breakpoint":320, "settings": {"slidesToShow": 1} }
-			]'>
-				<div class="single-slide">
-					<img src="image/others/brand-1.jpg" alt="">
+			<div class="row">
+				<div class="col-sm-12 col-md-12 col-xs-12 col-lg-6 mb--30 mb-lg--0">
+					<!-- Login Form s-->
+					<form  method="post">
+						<div class="login-form">
+							<h4 class="login-title">Welcome</h4>
+							<p><span class="font-weight-bold">To Pustok</span></p>
+							<div class="row">
+								<div class="form-group col-lg-12 ">
+									<input class="form-control form-control-user" placeholder="Fullname" asp-for="Fullname">
+									<span class="text-danger" asp-validation-for="Fullname"></span>
+								</div>
+								<div class="form-group col-lg-12 ">
+									<input class="form-control form-control-user" placeholder="Email" asp-for="Email">
+									<span class="text-danger" asp-validation-for="Email"></span>
+								</div>
+								<div class="form-group col-lg-12">
+									<input class="form-control form-control-user" placeholder="Username" asp-for="Username">
+									<span class="text-danger" asp-validation-for="Username"></span>
+								</div>
+								<div class="form-group col-lg-6">
+									<input class="form-control form-control-user" placeholder="Password" asp-for="Password">
+									<span class="text-danger" asp-validation-for="Password"></span>
+								</div>
+								<div class="form-group col-lg-6 mb--20">
+									<input class="form-control form-control-user" placeholder="ConfirmPassword" asp-for="ConfirmPassword">
+									<span class="text-danger" asp-validation-for="ConfirmPassword"></span>
+								</div>
+								<div class="text-danger" asp-validation-summary="ModelOnly"></div>
+								<button class="btn btn-primary btn-user btn-block">
+									Register Account
+								</button>
+							</div>
+						</div>
+					</form>
 				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-2.jpg" alt="">
-				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-3.jpg" alt="">
-				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-4.jpg" alt="">
-				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-5.jpg" alt="">
-				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-6.jpg" alt="">
-				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-1.jpg" alt="">
-				</div>
-				<div class="single-slide">
-					<img src="image/others/brand-2.jpg" alt="">
-				</div>
+			@* 	<div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+					<form action="https://demo.hasthemes.com/pustok-preview/pustok/">
+						<div class="login-form">
+							<h4 class="login-title">Returning Customer</h4>
+							<p><span class="font-weight-bold">I am a returning customer</span></p>
+							<div class="row">
+								<div class="col-md-12 col-12 mb--15">
+									<label for="email">Enter your email address here...</label>
+									<input class="mb-0 form-control" type="email" id="email1"
+										   placeholder="Enter you email address here...">
+								</div>
+								<div class="col-12 mb--20">
+									<label for="password">Password</label>
+									<input class="mb-0 form-control" type="password" id="login-password" placeholder="Enter your password">
+								</div>
+								<div class="col-md-12">
+									<a href="#" class="btn btn-outlined">Login</a>
+								</div>
+							</div>
+						</div>
+					</form>
+				</div> *@
 			</div>
 		</div>
-	</section>
-	<!--=================================
-		Footer Area
-	===================================== -->
+	</main>
+
+	@section scripts
+		{
+	<script src="~/js/plugins.js"></script>
+	<script src="~/js/ajax-mail.js"></script>
+	<script src="~/js/custom.js"></script>
+	@* 	<script>
+			var page = 2;
+			var pageSize = 2;
+			$("#showMore").click(function () {
+				$.ajax(
+					{
+						type: "POST",
+						url: "/Admin/Category/GetMoreRecords?page=" + page + "&pageSize=" + pageSize,
+						success: function (data) {
+							$("#records").append(data);
+							page++;
+						}
+					});
+			});
+		</script> *@
+	}
+	<!-- Use Minified Plugins Version For Fast Page Load -->
 </body>
 
 
 <!-- Mirrored from demo.hasthemes.com/pustok-preview/pustok/login-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Mar 2021 10:43:11 GMT -->
-</html>

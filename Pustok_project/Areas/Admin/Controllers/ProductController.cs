@@ -10,10 +10,12 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Pustok_project.ViewModels.Common;
 using Pustok_project.ViewModels.TagVM;
 using Pustok_project.Controllers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pustok_project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin, Moderator")]
     public class ProductController : Controller
     {
         PustokDbContext _db { get; }

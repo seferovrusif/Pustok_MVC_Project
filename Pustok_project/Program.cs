@@ -20,6 +20,23 @@ builder.Services.AddDbContext<PustokDbContext>(options =>
     opt.Password.RequireNonAlphanumeric = false;
     opt.Password.RequiredLength = 4;
 }).AddDefaultTokenProviders().AddEntityFrameworkStores<PustokDbContext>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = new PathString("/Auth/Login");
+    options.LogoutPath = new PathString("/Auth/Logout");
+    options.AccessDeniedPath = new PathString("/Home/AccessDenied");
+    options.AccessDeniedPath = new PathString("/Home/AccessDenied");
+
+    options.Cookie = new()
+    {
+        Name = "IdentityCookie",
+        HttpOnly = true,
+        SameSite = SameSiteMode.Lax,
+        SecurePolicy = CookieSecurePolicy.Always
+    };
+    options.SlidingExpiration = true;
+    options.ExpireTimeSpan = TimeSpan.FromDays(30);
+});
 builder.Services.AddSession();
 
 //builder.Services.AddHttpContextAcce
@@ -36,7 +53,9 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapControllerRoute(
     name: "areas",
     pattern: "{area:exists}/{controller=Slider}/{action=Index}/{id?}"

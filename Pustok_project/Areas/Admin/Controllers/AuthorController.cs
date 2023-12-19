@@ -4,10 +4,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Pustok_project.ViewModels.AuthorVM;
 using System.Xml.Linq;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pustok_project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin, Moderator")]
     public class AuthorController : Controller
     {
         PustokDbContext _db { get; }
@@ -63,7 +65,7 @@ namespace Pustok_project.Areas.Admin.Controllers
             });
         }
         [HttpPost]
-        public async Task<IActionResult> Update (int id , UpdateAuthorVM vm)
+        public async Task<IActionResult> Update (int? id , UpdateAuthorVM vm)
         {
             if (id == null || id <= 0) return BadRequest();
             if (!ModelState.IsValid)

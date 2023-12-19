@@ -12,8 +12,8 @@ using Pustok_project.Contexts;
 namespace Pustok_project.Migrations
 {
     [DbContext(typeof(PustokDbContext))]
-    [Migration("20231219072509_createnewdatabase")]
-    partial class createnewdatabase
+    [Migration("20231219203337_all")]
+    partial class all
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -1,112 +1,90 @@
 ﻿@using Pustok_project.ViewModels.AuthVM;
 @model LoginVM
-@{
-    Layout = null;
-}
+@* @{
+	Layout = null;
+}html lang="zxx">
+ *@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zxx">
+
 
 <head>
-
-    <meta charset="utf-8">
+    <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
-
-    <title>SB Admin 2 - Login</title>
-
-    <!-- Custom fonts for this template-->
-    <link href="~/admin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
-    <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
-          rel="stylesheet">
-
-    <!-- Custom styles for this template-->
-    <link href="~/admin/css/sb-admin-2.min.css" rel="stylesheet">
-
+    <title>Pustok - Book Store HTML Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    @section styles{
+        <link rel="stylesheet" type="text/css" media="screen" href="~/css/plugins.css" />
+        <link rel="stylesheet" type="text/css" media="screen" href="~/css/main.css" />
+        <link rel="shortcut icon" type="image/x-icon" href="image/favicon.ico">
+    }
 </head>
 
-<body class="bg-gradient-primary">
+<body>
 
-    <div class="container">
-
-        <!-- Outer Row -->
-        <div class="row justify-content-center">
-
-            <div class="col-xl-10 col-lg-12 col-md-9">
-
-                <div class="card o-hidden border-0 shadow-lg my-5">
-                    <div class="card-body p-0">
-                        <!-- Nested Row within Card Body -->
-                        <div class="row">
-                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
-                            <div class="col-lg-6">
-                                <div class="p-5">
-                                    <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
-                                    </div>
-                                    <form class="user" method="post">
-                                        <div class="form-group">
-                                            <input class="form-control form-control-user"
-                                                   asp-for="UserNameOrEmail"
-                                                   placeholder="Enter username or email address">
-                                            <span class="text-danger" asp-validation-for="UserNameOrEmail"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <input class="form-control form-control-user"
-                                                   placeholder="Password" asp-for="Password">
-                                            <span class="text-danger" asp-validation-for="Password"></span>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="custom-control custom-checkbox small">
-                                                <input class="custom-control-input" asp-for="IsRemember">
-                                                <label class="custom-control-label" asp-for="IsRemember">
-                                                    Remember
-                                                    Me
-                                                </label>
-                                            </div>
-                                        </div>
-                                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
-                                        <button class="btn btn-primary btn-user btn-block">
-                                            Login
-                                        </button>
-                                        <hr>
-                                        <a href="index.html" class="btn btn-google btn-user btn-block">
-                                            <i class="fab fa-google fa-fw"></i> Login with Google
-                                        </a>
-                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
-                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
-                                        </a>
-                                    </form>
-                                    <hr>
-                                    <div class="text-center">
-                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
-                                    </div>
-                                    <div class="text-center">
-                                        <a class="small" asp-action="Register">Create an Account!</a>
-                                    </div>
-                                </div>
+   
+    <main class="page-section inner-page-sec-padding-bottom">
+        <div class="container">
+            <div class="row">
+           
+                <div class="col-sm-12 col-md-12 col-lg-6 col-xs-12">
+                    <form class="user" method="post">
+                        <div class="form-group">
+                            <input class="form-control form-control-user"
+                                   asp-for="UserNameOrEmail"
+                                   placeholder="Enter username or email address">
+                            <span class="text-danger" asp-validation-for="UserNameOrEmail"></span>
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control form-control-user"
+                                   placeholder="Password" asp-for="Password">
+                            <span class="text-danger" asp-validation-for="Password"></span>
+                        </div>
+                        <div class="form-group">
+                            <div class="custom-control custom-checkbox small">
+                                <input class="custom-control-input" asp-for="IsRemember">
+                                <label class="custom-control-label" asp-for="IsRemember">
+                                    Remember
+                                    Me
+                                </label>
                             </div>
                         </div>
-                    </div>
+                        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                        <button class="btn btn-primary btn-user btn-block">
+                            Login
+                        </button>
+                      
+                    </form>
                 </div>
-
             </div>
-
         </div>
+    </main>
 
-    </div>
-
-    <!-- Bootstrap core JavaScript-->
-    <script src="~/admin/vendor/jquery/jquery.min.js"></script>
-    <script src="~/admin/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-
-    <!-- Core plugin JavaScript-->
-    <script src="~/admin/vendor/jquery-easing/jquery.easing.min.js"></script>
-
-    <!-- Custom scripts for all pages-->
-    <script src="~/admin/js/sb-admin-2.min.js"></script>
-
+    @section scripts
+        {
+        <script src="~/js/plugins.js"></script>
+        <script src="~/js/ajax-mail.js"></script>
+        <script src="~/js/custom.js"></script>
+        @* 	<script>
+    var page = 2;
+    var pageSize = 2;
+    $("#showMore").click(function () {
+    $.ajax(
+    {
+    type: "POST",
+    url: "/Admin/Category/GetMoreRecords?page=" + page + "&pageSize=" + pageSize,
+    success: function (data) {
+    $("#records").append(data);
+    page++;
+    }
+    });
+    });
+    </script> *@
+    }
+    <!-- Use Minified Plugins Version For Fast Page Load -->
 </body>
 
-</html>
+
+<!-- Mirrored from demo.hasthemes.com/pustok-preview/pustok/login-register.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 08 Mar 2021 10:43:11 GMT -->
+
+				

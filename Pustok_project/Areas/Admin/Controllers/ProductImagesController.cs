@@ -7,10 +7,12 @@ using Pustok_project.Models;
 using Pustok_project.ViewModels.ProductImages;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Pustok_project.Helpers;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Pustok_project.Areas.Admin.Controllers
 {
     [Area("Admin")]
+    [Authorize(Roles = "SuperAdmin, Admin, Moderator")]
 
     public class ProductImagesController : Controller
     {
