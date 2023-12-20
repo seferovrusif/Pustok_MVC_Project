@@ -48,17 +48,7 @@
                             <div class="main-navigation flex-lg-right">
                                 <ul class="main-menu menu-right ">
                                     <li class="menu-item has-children">
-                                        <a href="~/Home">
-                                            @* javascript:void(0) *@
-                                            Home <i class="fas fa-chevron-down dropdown-arrow"></i>
-                                        </a>
-                                        @*  <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
-                                        <li> <a href="index-2.html">Home Two</a></li>
-                                        <li> <a href="index-3.html">Home Three</a></li>
-                                        <li> <a href="index-4.html">Home Four</a></li>
-                                        <li> <a href="index-5.html">Home Five</a></li>
-                                        </ul> *@
+                                        <a asp-action="Index" asp-controller="Home">Home</a>
                                     </li>
                                     <!-- Shop -->
                                     <li class="menu-item has-children mega-menu">
@@ -337,7 +327,7 @@
 
                                             <a href="~/auth/Logout" class="font-weight-bold">Logout from @User.Identity.Name</a> <br>
                                             @* <a href="~/auth/Logout" class="font-weight-bold">Logout</a> <br> *@
-                                            <span>   </span><a asp-action="UserPage" asp-controller="Auth" asp-route-email=@User.Identity.Name>User Detail</a>
+                                            <span>   </span><a asp-action="UserPage" asp-controller="Auth" >User Detail</a>
                                         </div>
                                        
                                     }
@@ -529,14 +519,7 @@
                         <nav class="off-canvas-nav">
                             <ul class="mobile-menu main-mobile-menu">
                                 <li class="menu-item-has-children">
-                                    <a href="#">Home</a>
-                                    <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
-                                        <li> <a href="index-2.html">Home Two</a></li>
-                                        <li> <a href="index-3.html">Home Three</a></li>
-                                        <li> <a href="index-4.html">Home Four</a></li>
-                                        <li> <a href="index-5.html">Home Five</a></li>
-                                    </ul>
+                                    <a asp-action="Index" asp-controller="Home">Home</a>
                                 </li>
                                 <li class="menu-item-has-children">
                                     <a href="#">Blog</a>
@@ -699,16 +682,7 @@
                         <div class="main-navigation flex-lg-right">
                             <ul class="main-menu menu-right ">
                                 <li class="menu-item has-children">
-                                    <a href="javascript:void(0)">
-                                        Home <i class="fas fa-chevron-down dropdown-arrow"></i>
-                                    </a>
-                                    <ul class="sub-menu">
-                                        <li> <a href="index.html">Home One</a></li>
-                                        <li> <a href="index-2.html">Home Two</a></li>
-                                        <li> <a href="index-3.html">Home Three</a></li>
-                                        <li> <a href="index-4.html">Home Four</a></li>
-                                        <li> <a href="index-5.html">Home Five</a></li>
-                                    </ul>
+                                    <a asp-action="Index" asp-controller="Home">Home</a>
                                 </li>
                                 <!-- Shop -->
                                 <li class="menu-item has-children mega-menu">

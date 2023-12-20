@@ -1,8 +1,11 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pustok_project.Helpers;
 using Pustok_project.Models;
 using Pustok_project.ViewModels.AuthVM;
+using System.Security.Claims;
 
 namespace Pustok_project.Controllers
 {
@@ -117,6 +120,8 @@ namespace Pustok_project.Controllers
             }
             return true;
         }
+        [Authorize(Roles = "SuperAdmin, Admin, Moderator,Member")]
+
         public async  Task<IActionResult> UserPage()
         {
 			
@@ -150,8 +155,44 @@ namespace Pustok_project.Controllers
             user.Fullname = vm.Fullname;
             await _userManager.UpdateAsync(user);
 
-			return RedirectToAction(nameof(UserPage) ); 
-                }
+            if (User.Identity.Name != vm.Username)
+            {
+                await _signInManager.SignOutAsync();
+                return RedirectToAction("Login", "Auth");
+
+            }
+            //if(User.Identity.Name != vm.Username)
+            //{
+            //    await _signInManager.SignOutAsync();
+            //    await _signInManager.CheckPasswordSignInAsync(user, vm.Password,true);////pasword hash problem olur sonraya saxladim bunu
+            //}
+            return View(); 
+
+
+
+            ////ozum ucun test eledim alinmadi :/
+            ///
+            //var user1 = User as ClaimsPrincipal;
+
+            //var oldUsernameClaim = user1.FindFirst(ClaimTypes.Name);
+            //var identity = user1.Identity as ClaimsIdentity;
+            //if (oldUsernameClaim != null)
+            //{
+            //    identity.RemoveClaim(oldUsernameClaim);
+            //}
+
+            //// Add the new username claim
+            //var newUsernameClaim = new Claim(ClaimTypes.Name, vm.Username);
+            //var newIdentity = new ClaimsIdentity(identity.Claims.Append(newUsernameClaim), identity.AuthenticationType);
+            //var newPrincipal = new ClaimsPrincipal(newIdentity);
+
+            //// Update the user's identity
+            //HttpContext.SignInAsync(newPrincipal);
+
+
+        }
+       
+
     }
 }
 

@@ -57,6 +57,10 @@ namespace Pustok_project.Controllers
         {
             return ViewComponent("Basket");
         }
+        public IActionResult AccessDenied()
+        {
+            return View();
+        }
 
     }
 }
