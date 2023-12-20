@@ -4,6 +4,7 @@ namespace Pustok_project.ViewModels.AuthVM
 {
     public class LoginVM
     {
+        [Required]
         public string UserNameOrEmail { get; set; }
         [DataType(DataType.Password)]
 

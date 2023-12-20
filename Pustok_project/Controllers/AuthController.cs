@@ -117,23 +117,41 @@ namespace Pustok_project.Controllers
             }
             return true;
         }
-        public IActionResult UserPage()
+        public async  Task<IActionResult> UserPage()
         {
-            return View();
-        }
+			
+			var user = await _userManager.FindByNameAsync(User.Identity.Name);
+
+			if (user == null)
+			{
+				ModelState.AddModelError("", "User is not found");
+				return RedirectToAction("Index", "Home");
+			}
+			return View(new UserPageVM
+			{
+				Fullname = user.Fullname,
+				Email = user.Email,
+				Username = user.UserName,
+
+			});
+		}
         [HttpPost]
-        public async Task<IActionResult> UserPage(string username)
+        public async Task<IActionResult> UserPage(UserPageVM vm)
         {
-            AppUser user;
-                user = await _userManager.FindByEmailAsync(username);
-           
-            if (user == null)
-            {
-                ModelState.AddModelError("", "User is not found");
-                return RedirectToAction("Index", "Home");
-            }
-            return View(user);
-        }
+			var user = await _userManager.FindByNameAsync(User.Identity.Name);
+			if (user == null ) return NotFound();
+			if (!ModelState.IsValid)
+			{
+				return RedirectToAction("Index", "Home");
+			}
+
+			user.UserName = vm.Username;
+			user.Email = vm.Email;
+            user.Fullname = vm.Fullname;
+            await _userManager.UpdateAsync(user);
+
+			return RedirectToAction(nameof(UserPage) ); 
+                }
     }
 }
 
