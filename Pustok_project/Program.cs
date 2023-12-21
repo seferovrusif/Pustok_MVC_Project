@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Pustok_project.Contexts;
+using Pustok_project.ExternalServices.Implements;
+using Pustok_project.ExternalServices.Interfaces;
 using Pustok_project.Helpers;
 using Pustok_project.Models;
 
@@ -38,8 +40,8 @@ builder.Services.ConfigureApplicationCookie(options =>
     options.ExpireTimeSpan = TimeSpan.FromDays(30);
 });
 builder.Services.AddSession();
-
 //builder.Services.AddHttpContextAcce
+builder.Services.AddScoped<IEmailService, EmailService>();
 builder.Services.AddScoped<FooterServices>();
 
 var app = builder.Build();
