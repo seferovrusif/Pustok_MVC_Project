@@ -12,8 +12,8 @@ using Pustok_project.Contexts;
 namespace Pustok_project.Migrations
 {
     [DbContext(typeof(PustokDbContext))]
-    [Migration("20231220212237_allllll")]
-    partial class allllll
+    [Migration("20231221062225_aaa")]
+    partial class aaa
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -532,10 +532,6 @@ namespace Pustok_project.Migrations
                     b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
 
                     b.Property<string>("Fullname")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("ProfilePicture")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 

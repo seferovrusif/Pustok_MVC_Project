@@ -158,7 +158,8 @@ namespace Pustok_project.Controllers
             if (User.Identity.Name != vm.Username)
             {
                 await _signInManager.SignOutAsync();
-                return RedirectToAction("Login", "Auth");
+                await _signInManager.SignInAsync(user, true);
+                return RedirectToAction("UserPage", "Auth");
 
             }
             //if(User.Identity.Name != vm.Username)
