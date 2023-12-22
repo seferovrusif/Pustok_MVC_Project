@@ -191,7 +191,7 @@ namespace Pustok_project.Areas.Admin.Controllers
                 Quantity = data.Quantity,
                 IsDeleted = data.IsDeleted,
                 ProductMainImgstr = data.ProductMainImg,
-                TagId=data.TagProducts.Select(t=>t.TagId).ToList(),
+                TagId = data.TagProducts.Select(t => t.TagId).ToList(),
                 ImageUrls = data.ProductImages?.Select(pi => new ProductImageVM
                 {
                     Id = pi.Id,
@@ -204,16 +204,24 @@ namespace Pustok_project.Areas.Admin.Controllers
         public async Task<IActionResult> Update(int id, UpdateProductVM vm)
         {
             if (id == null || id <= 0) return BadRequest();
-            if (!ModelState.IsValid)
+            if (vm.TagId != null)
             {
-                return View(vm);
+                if (!vm.TagId.Any())
+                {
+                    ModelState.AddModelError("TagId", "You must add at least 1 Tag");
+                }
             }
-
-
-            if (!vm.TagId.Any())
+            else
             {
                 ModelState.AddModelError("TagId", "You must add at least 1 Tag");
             }
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Category = _db.Category;
+                ViewBag.Tag = _db.Tag;
+                return View(vm);
+            }
+
             var data = await _db.Product
                     .Include(p => p.ProductImages)
                       .Include(p => p.TagProducts)
