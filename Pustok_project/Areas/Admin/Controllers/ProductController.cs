@@ -111,7 +111,15 @@ namespace Pustok_project.Areas.Admin.Controllers
             if (!ModelState.IsValid)
             {
                 ViewBag.Category = _db.Category;
-                ViewBag.Tag = new SelectList(_db.Tag, "Id", "Name");
+                if (ViewBag.Tag != null)
+                {
+                    ViewBag.Tag = new SelectList(_db.Tag, "Id", "Name");
+                }
+                else
+                {
+                    ViewBag.Tag = _db.Tag;
+
+                }
                 return View(vm);
             }
             //if (!await _db.Category.AnyAsync(c => c.Id == vm.categ))
@@ -183,44 +191,45 @@ namespace Pustok_project.Areas.Admin.Controllers
                 Quantity = data.Quantity,
                 IsDeleted = data.IsDeleted,
                 ProductMainImgstr = data.ProductMainImg,
+                TagId=data.TagProducts.Select(t=>t.TagId).ToList(),
                 ImageUrls = data.ProductImages?.Select(pi => new ProductImageVM
                 {
                     Id = pi.Id,
                     Url = pi.ImagePath
                 })
+
             });
-        } 
+        }
         [HttpPost]
-        public async Task<IActionResult> Update (int id , UpdateProductVM vm)
+        public async Task<IActionResult> Update(int id, UpdateProductVM vm)
         {
             if (id == null || id <= 0) return BadRequest();
             if (!ModelState.IsValid)
             {
                 return View(vm);
             }
-            
+
 
             if (!vm.TagId.Any())
             {
                 ModelState.AddModelError("TagId", "You must add at least 1 Tag");
             }
             var data = await _db.Product
-                              .Include(p => p.ProductImages)
-
+                    .Include(p => p.ProductImages)
                       .Include(p => p.TagProducts)
-                      .SingleOrDefaultAsync(p => p.Id == id);
+                         .SingleOrDefaultAsync(p => p.Id == id);
             //var data = await _db.Product.FindAsync(id);
             if (data == null) return NotFound();
             data.Name = vm.Name;
-                data.ProductCode = vm.ProductCode;
-                data.About = vm.About;
-                data.Description = vm.Description;
-                data.SellPrice = vm.SellPrice;
-                data.CostPrice = vm.CostPrice;
-                data.Discount = vm.Discount;
-                data.CategoryId = vm.CategoryId;
-                data.Quantity = vm.Quantity;
-                data.IsDeleted = vm.IsDeleted;
+            data.ProductCode = vm.ProductCode;
+            data.About = vm.About;
+            data.Description = vm.Description;
+            data.SellPrice = vm.SellPrice;
+            data.CostPrice = vm.CostPrice;
+            data.Discount = vm.Discount;
+            data.CategoryId = vm.CategoryId;
+            data.Quantity = vm.Quantity;
+            data.IsDeleted = vm.IsDeleted;
             if (vm.TagId != null)
             {
                 data.TagProducts = vm.TagId.Select(id => new TagProduct
@@ -235,8 +244,8 @@ namespace Pustok_project.Areas.Admin.Controllers
                     ImagePath = i.SaveAsync(PathConstants.Productimages).Result,
                     ProductId = data.Id
                 });
-                
-               data.ProductImages.AddRange(imgs);
+
+                data.ProductImages.AddRange(imgs);
             }
             if (vm.ProductMainImg != null)
             {
@@ -252,15 +261,15 @@ namespace Pustok_project.Areas.Admin.Controllers
             //TempData["Response"] = false;
             if (id == null) return BadRequest();
 
-             var data =await _db.Product.FindAsync(id);
+            var data = await _db.Product.FindAsync(id);
             if (data == null) return NotFound();
             _db.Product.Remove(data);
             await _db.SaveChangesAsync();
             //TempData["Response"] = true;
             return RedirectToAction(nameof(Index));
         }
-       
-       
+
+
         public async Task<IActionResult> ProductPagination(int page = 1, int count = 8)
         {
             var items = _db.Product.Skip((page - 1) * count).Take(count).Select(s => new ProductListItemVM
@@ -287,7 +296,7 @@ namespace Pustok_project.Areas.Admin.Controllers
             return PartialView("_ProductPaginationPartial", pag);
         }
     }
-    }
+}
 
 
 

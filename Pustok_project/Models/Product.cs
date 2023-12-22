@@ -22,7 +22,7 @@ namespace Pustok_project.Models
         [Range(0,100)]
         public float Discount { get; set; }
         public ushort Quantity { get; set; }
-        public List<ProductImage> ProductImages { get; set; }
+        public List<ProductImage>? ProductImages { get; set; }
         public IEnumerable<TagProduct>? TagProducts { get; set; }
         public int CategoryId { get; set; }
         public Category? Category { get; set; }
